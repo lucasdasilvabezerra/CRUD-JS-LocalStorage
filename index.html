@@ -13,9 +13,7 @@
     </header>
 
     <main>
-      <div class="add-btn-container">
-        <button class="test">Adicionar Cliente</button>
-      </div>
+      <button class="add-client-btn">Adicionar Cliente</button>
 
       <table>
         <thead>
@@ -42,6 +40,35 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="add-modal-container hide">
+        <div class="add-modal">
+          <h2>Adicionar Cliente</h2>
+          <form class="add-client-form">
+            <div class="input-container">
+              <label for="name">Nome:</label>
+              <input type="text" id="name" class="add-name-input" />
+            </div>
+
+            <div class="input-container">
+              <label for="email">E-mail:</label>
+              <input type="text" id="email" class="add-email-input" />
+            </div>
+
+            <div class="input-container">
+              <label for="tel">Telefone:</label>
+              <input type="text" id="tel" class="add-tel-input" />
+            </div>
+
+            <div class="input-container">
+              <label for="city">Cidade:</label>
+              <input type="text" id="city" class="add-city-input" />
+            </div>
+
+            <input type="submit" value="Adicionar" id="add-client-submit" />
+          </form>
+        </div>
+      </div>
     </main>
   </body>
 </html>

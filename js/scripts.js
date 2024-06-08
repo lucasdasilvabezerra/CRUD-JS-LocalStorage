@@ -1,5 +1,10 @@
 // Seleção
 tableTbody = document.querySelector("table tbody");
+addClientBtn = document.querySelector(".add-client-btn");
+addModalContainer = document.querySelector(".add-modal-container");
+addClientSubmit = document.querySelector("#add-client-submit");
+
+// Pegando os elementos do form de ADD
 
 // Funções
 addClient = (client) => {
@@ -42,6 +47,24 @@ addClient = (client) => {
   tableTbody.appendChild(clientTr);
 };
 
+getClientData = () => {
+  let client = {
+    name: "Vazio",
+    email: "Vazio",
+    tel: "Vazio",
+    city: "Vazio",
+  };
+
+  client.name = document.querySelector(".add-name-input").value;
+  client.email = document.querySelector(".add-email-input").value;
+  client.tel = document.querySelector(".add-tel-input").value;
+  client.city = document.querySelector(".add-city-input").value;
+
+  addClient(client);
+
+  toggleAddModal();
+};
+
 angela = {
   name: "Angela",
   email: "angela@gmail.com",
@@ -51,4 +74,19 @@ angela = {
 
 addClient(angela);
 
+// Modal Add
+
+toggleAddModal = () => {
+  addModalContainer.classList.toggle("hide");
+};
+
 // Eventos
+
+addClientBtn.addEventListener("click", () => {
+  toggleAddModal();
+});
+
+addClientSubmit.addEventListener("click", (e) => {
+  e.preventDefault();
+  getClientData();
+});
