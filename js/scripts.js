@@ -4,6 +4,10 @@ addClientBtn = document.querySelector(".add-client-btn");
 addModalContainer = document.querySelector(".add-modal-container");
 addClientSubmit = document.querySelector("#add-client-submit");
 
+// Local Storage
+let registrosArray = []
+
+
 // Pegando os elementos do form de ADD
 
 // Funções
@@ -62,17 +66,16 @@ getClientData = () => {
 
   addClient(client);
 
+  registrosArray.push(client)
+  let registrosJSON = JSON.stringify(registrosArray)
+  localStorage.setItem("registros",registrosJSON)
+
+
+
+  console.log(registrosArray)
   toggleAddModal();
 };
 
-angela = {
-  name: "Angela",
-  email: "angela@gmail.com",
-  tel: "(44) 99806-1427",
-  city: "Paranavaí",
-};
-
-addClient(angela);
 
 // Modal Add
 
@@ -90,3 +93,19 @@ addClientSubmit.addEventListener("click", (e) => {
   e.preventDefault();
   getClientData();
 });
+
+
+
+
+
+// Inicialização
+
+registrosArray = JSON.parse(localStorage.getItem("registros"))
+
+console.log(registrosArray)
+
+registrosArray.forEach(client => {
+  addClient(client)
+});
+
+
