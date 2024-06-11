@@ -3,11 +3,18 @@ tableTbody = document.querySelector("table tbody");
 addClientBtn = document.querySelector(".add-client-btn");
 addModalContainer = document.querySelector(".add-modal-container");
 editModalContainer = document.querySelector(".edit-modal-container");
+
 addClientSubmit = document.querySelector("#add-client-submit");
 editClientSubmit = document.querySelector("#edit-client-submit");
 
+editNameInput = document.querySelector(".edit-name-input")
+editEmailInput = document.querySelector(".edit-email-input")
+editTelInput = document.querySelector(".edit-tel-input")
+editCityInput = document.querySelector(".edit-city-input")
+
 // Local Storage
 let registrosArray = JSON.parse(localStorage.getItem("registros")) || [];
+
 
 // Funções
 
@@ -70,7 +77,7 @@ getClientData = () => {
   let registrosJSON = JSON.stringify(registrosArray);
   localStorage.setItem("registros", registrosJSON);
 
-  console.log(registrosArray);
+  
   toggleAddModal();
 };
 
@@ -101,6 +108,56 @@ editClientSubmit.addEventListener("click", (e) => {
   e.preventDefault();
   toggleEditModal();
 });
+
+
+// EDIT BTN E DELETE BTN
+
+
+document.addEventListener("click",(e)=>{
+  if (e.target.classList.contains('edit-btn')){
+    
+      let editTr = e.target.closest("tr")
+      
+      editNameInput.value = editTr.children[0].innerText;
+      editEmailInput.value = editTr.children[1].innerText;
+      editTelInput.value = editTr.children[2].innerText;
+      editCityInput.value = editTr.children[3].innerText;
+      
+      
+      
+      
+
+      console.log(editCityInput.value)
+
+    toggleEditModal();
+  }
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Inicialização
 
