@@ -2,15 +2,15 @@
 tableTbody = document.querySelector("table tbody");
 addClientBtn = document.querySelector(".add-client-btn");
 addModalContainer = document.querySelector(".add-modal-container");
+editModalContainer = document.querySelector(".edit-modal-container");
 addClientSubmit = document.querySelector("#add-client-submit");
+editClientSubmit = document.querySelector("#edit-client-submit");
 
 // Local Storage
-let registrosArray = []
-
-
-// Pegando os elementos do form de ADD
+let registrosArray = JSON.parse(localStorage.getItem("registros")) || [];
 
 // Funções
+
 addClient = (client) => {
   const clientTr = document.createElement("tr");
 
@@ -66,21 +66,24 @@ getClientData = () => {
 
   addClient(client);
 
-  registrosArray.push(client)
-  let registrosJSON = JSON.stringify(registrosArray)
-  localStorage.setItem("registros",registrosJSON)
+  registrosArray.push(client);
+  let registrosJSON = JSON.stringify(registrosArray);
+  localStorage.setItem("registros", registrosJSON);
 
-
-
-  console.log(registrosArray)
+  console.log(registrosArray);
   toggleAddModal();
 };
 
-
-// Modal Add
+// Add Modal
 
 toggleAddModal = () => {
   addModalContainer.classList.toggle("hide");
+};
+
+// Edit Modal
+
+toggleEditModal = () => {
+  editModalContainer.classList.toggle("hide");
 };
 
 // Eventos
@@ -94,18 +97,17 @@ addClientSubmit.addEventListener("click", (e) => {
   getClientData();
 });
 
-
-
-
+editClientSubmit.addEventListener("click", (e) => {
+  e.preventDefault();
+  toggleEditModal();
+});
 
 // Inicialização
 
-registrosArray = JSON.parse(localStorage.getItem("registros"))
 
-console.log(registrosArray)
 
-registrosArray.forEach(client => {
-  addClient(client)
+console.log(registrosArray);
+
+registrosArray.forEach((client) => {
+  addClient(client);
 });
-
-
