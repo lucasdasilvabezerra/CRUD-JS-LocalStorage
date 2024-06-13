@@ -11,11 +11,24 @@ editNameInput = document.querySelector(".edit-name-input")
 editEmailInput = document.querySelector(".edit-email-input")
 editTelInput = document.querySelector(".edit-tel-input")
 editCityInput = document.querySelector(".edit-city-input")
+editClientSubmit = document.querySelector("#edit-client-submit")
 
+
+// Old Values para filtrar em registros e dar upadate
+
+let oldValues = {
+  name: "",
+  email: "",
+  tel: "",
+  city: ""
+}
 // Local Storage
 let registrosArray = JSON.parse(localStorage.getItem("registros")) || [];
 
 
+// Registro a ser alterado
+let editTr; 
+let deleteTr;
 // Funções
 
 addClient = (client) => {
@@ -81,17 +94,78 @@ getClientData = () => {
   toggleAddModal();
 };
 
-// Add Modal
+  // Add Modal
 
 toggleAddModal = () => {
   addModalContainer.classList.toggle("hide");
 };
 
-// Edit Modal
+  // Edit Modal
 
 toggleEditModal = () => {
   editModalContainer.classList.toggle("hide");
 };
+
+updateClient = () =>{
+
+
+
+    editTr.children[0].innerText = editNameInput.value
+    editTr.children[1].innerText =  editEmailInput.value;
+    editTr.children[2].innerText =  editTelInput.value;
+    editTr.children[3].innerText = editCityInput.value;
+    
+    registro = registrosArray.find(registro => registro.name === oldValues.name &&
+    registro.email === oldValues.email && registro.tel === oldValues.tel &&
+    registro.city === oldValues.city)
+
+    if (registro){
+      registro.name = editNameInput.value
+      registro.email =  editEmailInput.value;
+      registro.tel =  editTelInput.value;
+      registro.city = editCityInput.value;
+
+      console.log("Rodou!\n registro = ",registro," registrosArray = ",registrosArray)
+
+      // Transformando o novo array em JSON para dar update na LS
+      let registrosJSON = JSON.stringify(registrosArray);
+      // Dando update na LS
+      localStorage.setItem("registros", registrosJSON);
+    }
+    
+    
+
+
+}
+
+
+deleteClient = ()=>{
+
+  registro = registrosArray.find(registro => registro.name === editTr.children[0].innerText &&
+  registro.email === editTr.children[1].innerText && registro.tel === editTr.children[2].innerText &&
+  registro.city === editTr.children[3].innerText)
+
+  registroIndex = registrosArray.indexOf(registro)
+
+
+  if (registro){
+    registrosArray.splice(registroIndex,1)
+  }
+
+
+
+  editTr.parentNode.removeChild(editTr);
+
+
+  // Transformando o novo array em JSON para dar update na LS
+  let registrosJSON = JSON.stringify(registrosArray);
+  // Dando update na LS
+  localStorage.setItem("registros", registrosJSON);
+
+
+}
+
+
 
 // Eventos
 
@@ -114,22 +188,38 @@ editClientSubmit.addEventListener("click", (e) => {
 
 
 document.addEventListener("click",(e)=>{
+
+  
+
   if (e.target.classList.contains('edit-btn')){
-    
-      let editTr = e.target.closest("tr")
+    editTr = e.target.closest("tr")
+     
       
       editNameInput.value = editTr.children[0].innerText;
       editEmailInput.value = editTr.children[1].innerText;
       editTelInput.value = editTr.children[2].innerText;
       editCityInput.value = editTr.children[3].innerText;
       
-      
+      oldValues.name = editNameInput.value
+      oldValues.email = editEmailInput.value
+      oldValues.tel = editTelInput.value
+      oldValues.city = editCityInput.value
       
       
 
-      console.log(editCityInput.value)
+     
 
     toggleEditModal();
+  }
+
+  if (e.target.classList.contains("delete-btn")){
+    editTr = e.target.closest("tr")
+
+
+    deleteClient()
+  
+
+
   }
 
 
@@ -137,7 +227,15 @@ document.addEventListener("click",(e)=>{
 })
 
 
+  // Submit Edit
 
+editClientSubmit.addEventListener("click", (e)=>{
+  e.preventDefault()
+
+  updateClient();
+  
+
+})
 
 
 
