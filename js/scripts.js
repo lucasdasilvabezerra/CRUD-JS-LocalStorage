@@ -13,6 +13,8 @@ editTelInput = document.querySelector(".edit-tel-input")
 editCityInput = document.querySelector(".edit-city-input")
 editClientSubmit = document.querySelector("#edit-client-submit")
 
+closeAddModal = document.querySelector("#close-add-modal")
+closeEditModal = document.querySelector("#close-edit-modal")
 
 // Old Values para filtrar em registros e dar upadate
 
@@ -237,7 +239,16 @@ editClientSubmit.addEventListener("click", (e)=>{
 
 })
 
+// Fechar Modal
 
+closeAddModal.addEventListener("click",()=>{
+  toggleAddModal()
+})
+
+
+closeEditModal.addEventListener("click",()=>{
+  toggleEditModal()
+})
 
 
 

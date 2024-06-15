@@ -131,6 +131,9 @@ table th{
 .hide{
     opacity: 0;
     pointer-events: none;
+    transition: .3s;
+   
+    
 }
 
 /* ADD MODAL */
@@ -158,6 +161,8 @@ table th{
     border-radius: 10px;
     width: 40%;
     overflow: hidden;
+
+    transition: .3s;
 }
 
 .add-modal>h2{
@@ -165,6 +170,8 @@ table th{
     background-color: yellow;
     padding: 5px;
 }
+
+
 
 .add-client-form{
     display: flex;
@@ -246,6 +253,26 @@ input:focus {
     text-align: center;
     background-color: yellow;
     padding: 5px;
+}
+
+.edit-modal #close-edit-modal,#close-add-modal{
+
+    font-size: 1.3rem;
+    color: red;
+    font-weight: bold;
+
+    position: fixed;
+    right: 3%;
+    top: 3%;
+
+    overflow: hidden;
+}
+
+#close-edit-modal:hover,#close-add-modal:hover{
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.507);
+    
 }
 
 .edit-client-form{

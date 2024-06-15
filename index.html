@@ -6,10 +6,15 @@
     <title>CRUD</title>
     <link rel="stylesheet" href="css/styles.css" />
     <script src="js/scripts.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/f500af8d01.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
       <h1 class="title">Cadastro de Clientes</h1>
+
     </header>
 
     <main>
@@ -25,14 +30,13 @@
             <th>Ação</th>
           </tr>
         </thead>
-        <tbody>
-   
-        </tbody>
+        <tbody></tbody>
       </table>
 
       <div class="add-modal-container hide">
         <div class="add-modal">
           <h2>Adicionar Cliente</h2>
+          <i class="fa-regular fa-rectangle-xmark" id="close-add-modal"></i>
           <form class="add-client-form">
             <div class="input-container">
               <label for="add-name">Nome:</label>
@@ -59,46 +63,34 @@
         </div>
       </div>
 
-
       <div class="edit-modal-container hide">
-
-       
-
         <div class="edit-modal">
-
           <h2>Editar Cliente</h2>
-
+          <i class="fa-regular fa-rectangle-xmark" id="close-edit-modal"></i>
           <form class="edit-client-form">
-
             <div class="input-container">
               <label for="edit-name">Nome:</label>
-              <input type="text" id="edit-name" class="edit-name-input"/>
+              <input type="text" id="edit-name" class="edit-name-input" />
             </div>
 
             <div class="input-container">
               <label for="edit-email">Email:</label>
-              <input type="email" id="edit-email" class="edit-email-input"/>
+              <input type="email" id="edit-email" class="edit-email-input" />
             </div>
 
             <div class="input-container">
               <label for="edit-tel">Telefone:</label>
-              <input type="text" id="edit-tel" class="edit-tel-input"/>
+              <input type="text" id="edit-tel" class="edit-tel-input" />
             </div>
 
             <div class="input-container">
               <label for="edit-city">Cidade:</label>
-              <input type="text" id="edit-city" class="edit-city-input"/>
+              <input type="text" id="edit-city" class="edit-city-input" />
             </div>
 
-
             <input type="submit" value="Salvar" id="edit-client-submit" />
-
           </form>
-
         </div>
-
-
-
       </div>
     </main>
   </body>
